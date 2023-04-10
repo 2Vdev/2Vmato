@@ -1,0 +1,30 @@
+{
+    "name": "2Vmato by 2Vdev",
+    "short_name": "2Vmato",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#2E2E2E",
+    "theme_color": "#2E2E2E",
+    "orientation": "landscape-primary",
+    "description": "a simple pomodoro timer",
+    "icons": [
+        {
+            "src": "images/favicon.ico",
+            "sizes": "72x72 96x96 128x128 256x256 512x512",
+            "purpose": "any maskable"
+          },
+          {
+            "src": "images/icon_512.png",
+            "sizes": "72x72 96x96 128x128 256x256 512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+          }
+    ],
+    "prefer_related_applications": true,
+    "related_applications": [
+    {
+        "platform": "play",
+        "id": "com.google.samples.apps.iosched"
+    }
+]
+  }

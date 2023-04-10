@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>2Vmato</title>
+    <meta name="viewport">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="index.css" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/favicon.ico">
+    <meta name="apple-mobile-web-app-status-bar" content="#2E2E2E">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#2E2E2E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="app.js"></script>
+  </head>
+  <body class="dark">
+    <div id="timer" class="dark">25:00</div>
+    <div class="aboutdiv">
+      <p class="abouttitle"><b>2Vmato</b> by 2Vdev</p>
+      <p><b>about 2Vmato</b>&ensp;2Vmato is a simple pomodoro timer  that can be used for study or mindfulness sessions. 
+        This method is scientifically proven to help concentrate thanks to the 5-minute breaks 
+        between the 25-minute work sessions. 2Vmato's goal is to bring you a clean, seamless, 
+        minimal and functional pomodoro experience. Ready, set, pomodoro!
+      </p>
+      <p><b>did you know?</b>&ensp;You can add 2Vmato to your homescreen or install it on your PC!
+        Just find your browser's "install" or "add to homescreen" pop-up.
+      </p>
+      <div class="aboutlinks">
+        <a title="widget version (Notion, embed, phone widgets...)" href="widget/index.html">&ensp;widget&ensp;</a>
+        <a title="refresh the page" href="">&ensp;refresh&ensp;</a>
+        <a title="follow our insta!" href="https://www.instagram.com/2Vdevteam/">&ensp;instagram&ensp;</a>
+        <a title="updates are on our twitter" href="https://twitter.com/2Vdevteam">&ensp;twitter&ensp;</a>
+    </div>
+    </div>
+    <div class="bottomdiv">
+        <a id="start" title="start or resume your session" href="#">&ensp;start&ensp;</a>
+        <a id="pause" title="pause the session" href="#">&ensp;pause&ensp;</a>
+        <a title="reset the timer" href="">&ensp;restart&ensp;</a>
+        <a id="toggle-mode" title="change between light and dark mode" href="#">&ensp;themes&ensp;</a>
+        <a title="widget version (Notion, embed, phone widgets...)" href="widget/index.html">&ensp;widget&ensp;</a>
+        <a title="by 2VDev" href="https://twitter.com/2Vdevteam">&ensp;developer&ensp;</a>
+    </div>
+    <script>
+      const toggleModeBtn = document.getElementById("toggle-mode");
+      const body = document.body;
+      const bottomLinks = document.getElementById("bottom-links");
+
+      toggleModeBtn.addEventListener("click", function () {
+        if (body.classList.contains("dark")) {
+          body.classList.remove("dark");
+          body.classList.add("light");
+          // toggleModeBtn.innerText = "light mode";
+        } else {
+          body.classList.remove("light");
+          body.classList.add("dark");
+          // toggleModeBtn.innerText = "dark mode";
+        }
+        if (timer.classList.contains("dark")) {
+          timer.classList.remove("dark");
+          timer.classList.add("light");
+          // toggleModeBtn.innerText = "light mode";
+        } else {
+          timer.classList.remove("light");
+          timer.classList.add("dark");
+          // toggleModeBtn.innerText = "dark mode";
+        }
+      });
+    </script>
+    <script>
+      let workMinutes = 25;
+      let breakMinutes = 5;
+      let seconds = 0;
+      let isPaused = false;
+      let isWorking = true;
+      let intervalId;
+      let timer = document.getElementById("timer");
+      
+      function startTimer() {
+        if (!isPaused) {
+          seconds--;
+          if (seconds < 0) {
+            seconds = 59;
+            if (isWorking) {
+              workMinutes--;
+            } else {
+              breakMinutes--;
+            }
+          }
+          if (isWorking) {
+            if (workMinutes < 0) {
+              workMinutes = 25;
+              isWorking = false;
+              timer.innerHTML = `${breakMinutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            } else {
+              timer.innerHTML = `${workMinutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            }
+          } else {
+            if (breakMinutes < 0) {
+              breakMinutes = 5;
+              isWorking = true;
+              timer.innerHTML = `${workMinutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            } else {
+              timer.innerHTML = `${breakMinutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            }
+          }
+        }
+      }
+      
+      document.getElementById("start").addEventListener("click", (event) => {
+        event.preventDefault();
+        if (!intervalId) {
+          intervalId = setInterval(startTimer, 1000);
+        } else {
+          isPaused = false;
+        }
+      });
+      
+      document.getElementById("pause").addEventListener("click", (event) => {
+        event.preventDefault();
+        isPaused = true;
+      });
+    </script>
+    </body>
+  </body>
+</html>
