@@ -45,6 +45,7 @@ body.light {
     vertical-align: center;
     font-size: 200%;
     transition: background-color 0.8s ease;
+    font-weight: 700;
   }
 
   #timer.light {
@@ -61,6 +62,7 @@ body.light {
     vertical-align: center;
     font-size: 200%;
     transition: background-color 0.8s ease;
+    font-weight: 700;
   }
 
   .bottomdiv {
@@ -76,6 +78,7 @@ body.light {
     transform: translateX(-50%) translateY(-5%);
     font-family: 'Inter Tight', sans-serif;
     min-height: 20px;
+    font-weight: 700;
   }
 
   a {
@@ -86,12 +89,14 @@ body.light {
     -ms-transition: color .2s linear;
     -o-transition: color .2s linear;
     transition: color .2s linear;
+    font-weight: 700;
   }
 
   a:link {
     color: rgb(100, 100, 100);
     background-color: transparent;
     text-decoration: none;
+    font-weight: 700;
   }
   
   a:visited {
