@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>2Vmato</title>
+    <meta name="viewport">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="index.css" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/favicon.ico">
+    <meta name="apple-mobile-web-app-status-bar" content="#2E2E2E">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#2E2E2E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="app.js"></script>
+  </head>
+  <body class="dark">
+    <div id="timer" class="dark">25:00</div>
+    <div class="bottomdiv">
+        <a id="start" title="start or resume your session" href="#">&ensp;start&ensp;</a>
+        <a id="pause" title="pause the session" href="#">&ensp;pause&ensp;</a>
+        <a title="reset the timer" href="">&ensp;restart&ensp;</a>
+        <a id="toggle-mode" title="change between light and dark mode" href="#">&ensp;themes&ensp;</a>
+        <a title="widget version (Notion, embed, phone widgets...)" href="../index.html">&ensp;web&ensp;</a>
+        <a title="by 2VDev" href="https://github.com/2Vdev">&ensp;developer&ensp;</a>
+    </div>
+    <script>
+      const toggleModeBtn = document.getElementById("toggle-mode");
+      const body = document.body;
+      const bottomLinks = document.getElementById("bottom-links");
+
+      toggleModeBtn.addEventListener("click", function () {
+        if (body.classList.contains("dark")) {
+          body.classList.remove("dark");
+          body.classList.add("light");
+          // toggleModeBtn.innerText = "light mode";
+        } else {
+          body.classList.remove("light");
+          body.classList.add("dark");
+          // toggleModeBtn.innerText = "dark mode";
+        }
+        if (timer.classList.contains("dark")) {
+          timer.classList.remove("dark");
+          timer.classList.add("light");
+          // toggleModeBtn.innerText = "light mode";
+        } else {
+          timer.classList.remove("light");
+          timer.classList.add("dark");
+          // toggleModeBtn.innerText = "dark mode";
+        }
+      });
+    </script>
+    <script>
+      let workMinutes = 25;
+      let breakMinutes = 5;
+      let seconds = 0;
+      let isPaused = false;
+      let isWorking = true;
+      let intervalId;
+      let timer = document.getElementById("timer");
+      
+      function startTimer() {
+        if (!isPaused) {
+          seconds--;
+          if (seconds < 0) {
+            seconds = 59;
+            if (isWorking) {
+              workMinutes--;
+            } else {
+              breakMinutes--;
+            }
+          }
+          if (isWorking) {
+            if (workMinutes < 0) {
+              workMinutes = 25;
+              isWorking = false;
+              timer.innerHTML = `${breakMinutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            } else {
+              timer.innerHTML = `${workMinutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            }
+          } else {
+            if (breakMinutes < 0) {
+              breakMinutes = 5;
+              isWorking = true;
+              timer.innerHTML = `${workMinutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            } else {
+              timer.innerHTML = `${breakMinutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            }
+          }
+        }
+      }
+      
+      document.getElementById("start").addEventListener("click", (event) => {
+        event.preventDefault();
+        if (!intervalId) {
+          intervalId = setInterval(startTimer, 1000);
+        } else {
+          isPaused = false;
+        }
+      });
+      
+      document.getElementById("pause").addEventListener("click", (event) => {
+        event.preventDefault();
+        isPaused = true;
+      });
+    </script>
+  </body>
+</html>
