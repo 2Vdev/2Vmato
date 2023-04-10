@@ -1,10 +1,27 @@
-body {
+body.dark {
     background-color: rgb(46, 46, 46);
+    color: white;
     overflow: hidden;
     margin: 0px;
     height: 100%;
     width: 100%;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.8s ease;
+    font-family: 'Inter Tight';
+  }
+
+  body.light {
+    background-color: rgb(255, 255, 255);
+    color: rgb(46, 46, 46);
+    overflow: hidden;
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+    transition: background-color 0.8s ease;
+    font-family: 'Inter Tight';
+  }
+
+  @media screen and (max-width:430px) {
+
   }
   
   ::-webkit-scrollbar {
@@ -20,7 +37,7 @@ body {
     cursor: pointer;
   }
   
-  #timer {
+  #timer.dark {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -31,8 +48,44 @@ body {
     color: white;
     text-align: center;
     font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
     vertical-align: center;
     font-size: 500%;
+    transition: background-color 0.8s ease;
+  }
+
+  #timer.light {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    font-family: 'Inter Tight', sans-serif;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    color: rgb(46, 46, 46);
+    text-align: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    vertical-align: center;
+    font-size: 500%;
+    transition: background-color 0.8s ease;
+  }
+
+  .aboutdiv {
+    position: relative;
+    display: none;
+    margin: 15rem;
+    padding: 2rem;
+    height: 60%;
+    border-radius: 1rem;
+    background-color: rgba(128, 128, 128, 0.5);
+    backdrop-filter: blur(1rem);
+  }
+
+  .abouttitle {
+    font-family: 'Inter Tight';
+    font-weight: 300;
+    font-size: 2rem;
   }
 
   .bottomdiv {
@@ -42,6 +95,7 @@ body {
     font-size: 100%;
     bottom: 0%;
     left: 50%;
+    width: 100%;
     -moz-transform: translateX(-50%) translateY(-5%);
     -webkit-transform: translateX(-50%) translateY(-5%);
     transform: translateX(-50%) translateY(-5%);
@@ -49,8 +103,15 @@ body {
     min-height: 40px;
   }
 
+  .aboutlinks {
+    text-align: center;
+    display: inline-block;
+    color: #000000;
+  }
+
   a {
     text-align: center;
+    font-weight: 700;
     color: rgb(170, 170, 170);
     -webkit-transition: color .2s linear;
     -moz-transition: color .2s linear;
@@ -60,25 +121,25 @@ body {
   }
 
   a:link {
-    color: rgb(170, 170, 170);
+    color: rgb(100, 100, 100);
     background-color: transparent;
     text-decoration: none;
   }
   
   a:visited {
-    color: rgb(170, 170, 170);
+    color: rgb(100, 100, 100);
     background-color: transparent;
     text-decoration: none;
   }
   
   a:hover {
-    color: rgb(255, 255, 255);
+    color: rgb(170, 170, 170);
     background-color: transparent;
     text-decoration: none;
   }
   
   a:active {
-    color: rgb(157, 157, 157);
+    color: rgb(100, 100, 100);
     background-color: transparent;
     text-decoration: none;
   }
